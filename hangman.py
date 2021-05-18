@@ -106,8 +106,11 @@ def hangman(secret_word):
                     continue
             guess = input("Please guess a letter: ")
             letter = guess.lower()
+            if letter not in available_letters:
+                    print("Invalid Input,choose again.")
+                    continue
 
-            if letter in secret_word:
+            elif letter in secret_word:
                 letters_guessed.append(letter)
                 #print(letters_guessed)
                 print("Good guess: {} ".format(
@@ -116,9 +119,7 @@ def hangman(secret_word):
                     print(" * * Congratulations, you won! * * ", end='\n\n')
                     break
             else:
-                if letter not in available_letters:
-                    print("Invalid Input,choose again.")
-                    continue
+                
                 print("Oops! That letter is not in my word: {} ".format(
                     get_guessed_word(secret_word, letters_guessed)))
                 letters_guessed.append(letter)
@@ -126,6 +127,7 @@ def hangman(secret_word):
                 print("")
         else:
             print(IMAGES[-1])
+            print("your word is: "secret_word)
             print("Hey Pal! you have losed and the man have hang.")
             break
 
